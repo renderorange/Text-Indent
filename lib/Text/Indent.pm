@@ -41,6 +41,7 @@ one level.
 
 =for testing
 use_ok('Text::Indent');
+eval "use Test::NoWarnings";
 
 =cut
 
@@ -49,7 +50,7 @@ package Text::Indent;
 use strict;
 use warnings;
 
-our $VERSION = 0.001_000;
+our $VERSION = '0.01';
 
 use Params::Validate    qw|:all|;
 
