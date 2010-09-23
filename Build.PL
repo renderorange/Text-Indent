@@ -7,7 +7,7 @@ my $build = Module::Build->new(
 		Params::Validate   => 0.50,
 		Class::MethodMaker => 1.12,
 	},
-	dist_version       => 0.1,
+	dist_version_from       => 'lib/Text/Indent.pm',
     create_makefile_pl => 'passthrough',
 );
 

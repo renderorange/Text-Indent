@@ -50,7 +50,7 @@ package Text::Indent;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Params::Validate    qw|:all|;
 
@@ -301,7 +301,7 @@ sub indent
     my @args = @_;
     
     return ($self->spacechar x ($self->spaces * $self->level)) .
-           "@args" . ($self->add_newline ? "\n" : undef);
+           "@args" . ($self->add_newline ? "\n" : '');
     
 }
 
@@ -382,7 +382,7 @@ James FitzGibbon, E<lt>jfitz@CPAN.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2003 James FitzGibbon.  All Rights Reserved.
+Copyright (c) 2003-10 James FitzGibbon.  All Rights Reserved.
 
 This module is free software; you may use it under the same terms as Perl
 itself.

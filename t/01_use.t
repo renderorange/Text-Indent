@@ -14,7 +14,7 @@ BEGIN {
 }
 
 use_ok('Text::Indent');
-is($Text::Indent::VERSION, '0.01', 'check module version');
+is($Text::Indent::VERSION, '0.02', 'check module version');
 
 #
 # EOF

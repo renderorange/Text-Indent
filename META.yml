@@ -1,16 +1,20 @@
---- #YAML:1.0
+---
 name: Text-Indent
-version: 0.1
+version: 0.02
+author:
+  - 'James FitzGibbon, E<lt>jfitz@CPAN.orgE<gt>'
+abstract: simple indentation of text shared among modules
 license: perl
-distribution_type: module
+resources:
+  license: http://dev.perl.org/licenses/
 requires:
   Class::MethodMaker: 1.12
   Params::Validate: 0.5
-recommends: {}
-build_requires: {}
-conflicts: {}
 provides:
   Text::Indent:
     file: lib/Text/Indent.pm
-    version: 0.001
-generated_by: Module::Build version 0.21
+    version: 0.02
+generated_by: Module::Build version 0.280801
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
