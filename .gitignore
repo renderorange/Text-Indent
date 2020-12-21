@@ -1,5 +1,10 @@
-Build
 MYMETA.*
-_build/
 blib/
 *.tar.gz
+*.swp
+cover_db/
+*.back
+*.bak
+Makefile
+Text-Indent-*
+pm_to_blib
