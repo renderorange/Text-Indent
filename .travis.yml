@@ -1,34 +1,53 @@
+# based on brian's standard Travis CI config for Perl 5 modules
+# https://github.com/briandfoy/brians_perl_modules_travis_config
+# This file is licensed under the Artistic License 2.0
+
 sudo: false
+
+dist: trusty
+
+cache:
+    directories:
+    - $HOME/.perlbrew-cache
+
 language: perl
 perl:
-    - '5.32'
-    - '5.30'
-    - '5.28'
-    - '5.26'
-    - '5.24'
-    - '5.22'
-    - '5.20'
-    - '5.18'
-    - '5.16'
-    - '5.14'
-    - '5.12'
-    - '5.10'
-    - '5.8'
+    - "5.10"
+    - "5.12"
+    - "5.14"
+    - "5.16"
+    - "5.18"
+    - "5.20"
+    - "5.22"
+    - "5.24"
+    - "5.26"
+    - "5.28"
+    - "5.30"
+
 env:
     - PERL5LIB=$PERL5LIB:~/build/renderorange/Text-Indent/lib \
       COVERAGE=1 \
       HARNESS_PERL_SWITCHES='-MDevel::Cover=-db,cover_db,-coverage,statement,subroutine,time'
+
 before_install:
     - git clone git://github.com/travis-perl/helpers ~/travis-perl-helpers
-    - source ~/travis-perl-helpers/init
+    - source ~/travis-perl-helpers/init --auto
     - build-perl
+    - perl -V
+    - build-dist
+    - cd $BUILD_DIR
+
 install:
-    - cpan-install --coverage
-script:
     - cpanm --quiet --notest Params::Validate Class::MethodMaker
-    - cpanm --quiet --notest Test::More Test::NoWarnings
+    - cpanm --quiet --notest Test::More Test::NoWarnings Test::NoBreakpoints
+    - cpanm --quiet --notest Devel::Cover
+    - cpanm --quiet --notest Devel::Cover::Report::Coveralls
+
+script:
     - prove -v t/*.t
+
 after_success:
     - cover -report coveralls -ignore_re .t\$ -ignore_re t/
+
 after_failure:
     - cat /home/travis/.cpanm/work/*/build.log
