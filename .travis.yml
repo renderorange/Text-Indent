@@ -41,13 +41,12 @@ install:
     - cpanm --quiet --notest Params::Validate Class::MethodMaker
     - cpanm --quiet --notest Test::More Test::NoWarnings Test::NoBreakpoints
     - cpanm --quiet --notest Devel::Cover
-    - cpanm --quiet --notest Devel::Cover::Report::Coveralls
 
 script:
     - prove -v t/*.t
 
 after_success:
-    - cover -report coveralls -ignore_re .t\$ -ignore_re t/
+    - cover -ignore_re .t\$ -ignore_re t/
 
 after_failure:
     - cat /home/travis/.cpanm/work/*/build.log
