@@ -26,8 +26,7 @@ perl:
 
 env:
     - PERL5LIB=$PERL5LIB:~/build/renderorange/Text-Indent/lib \
-      COVERAGE=1 \
-      HARNESS_PERL_SWITCHES='-MDevel::Cover=-db,cover_db,-coverage,statement,subroutine,time'
+      HARNESS_PERL_SWITCHES='-MDevel::Cover=-ignore,"\.t$",+ignore,"prove",-coverage,statement,branch,condition,subroutine,pod'
 
 before_install:
     - git clone git://github.com/travis-perl/helpers ~/travis-perl-helpers
@@ -43,10 +42,10 @@ install:
     - cpanm --quiet --notest Devel::Cover
 
 script:
-    - prove -v t/*.t
+    - prove -wmlv t/*.t
 
 after_success:
-    - cover -ignore_re .t\$ -ignore_re t/
+    - cover
 
 after_failure:
     - cat /home/travis/.cpanm/work/*/build.log
